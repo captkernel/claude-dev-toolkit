@@ -10,6 +10,11 @@ Set up Claude Code well and build with it.
 
 Run any project's tests with `python -m pytest <subfolder>`.
 
+## Use in Claude chat (claude.ai)
+
+These are **Claude Code / runtime** tools (installers, a secrets helper, a Playwright screenshot loop, runnable agent code) — they need a local environment, so they aren't claude.ai chat skills. The *chat-usable* skills live in the sibling repos **claude-thinking-tools**, **claude-writing-tools**, and **claude-everyday-tools** (see their `skills/`).
+
+
 ---
 
 _Curated/built from techniques shared by creators on Instagram (May 2026); marketing hype and inflated stats stripped out. Prompt text is rewritten, not copied; source handles are credited in the pack files._
