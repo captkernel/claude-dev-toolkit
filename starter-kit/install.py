@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
-"""Drop the starter-kit files (CLAUDE.md, MEMORY.md, ERRORS.md, anti-style.md)
-into a target repo. Existing files are kept unless --force is passed.
+"""Drop the starter-kit files into a target repo. Existing files are kept unless
+--force is passed.
+
+Copies the project-context files (CLAUDE.md, MEMORY.md, ERRORS.md, anti-style.md)
+plus a `.claude/` config tree that sets up long-running/autonomous work:
+a curated permission allowlist (settings.json), the `/loop` and `/goal` slash
+commands, and an `orchestrator` subagent.
 
 Usage:
     python install.py <target_dir> [--force]
@@ -10,12 +15,24 @@ import argparse
 import os
 import shutil
 
-FILES = ["CLAUDE.md", "MEMORY.md", "ERRORS.md", "anti-style.md"]
+# Relative paths copied from templates/ into the target, in order. Nested paths
+# (under .claude/) have their parent directories created as needed.
+FILES = [
+    "CLAUDE.md",
+    "MEMORY.md",
+    "ERRORS.md",
+    "anti-style.md",
+    ".claude/settings.json",
+    ".claude/commands/loop.md",
+    ".claude/commands/goal.md",
+    ".claude/agents/orchestrator.md",
+]
 
 
 def install(templates_dir: str, target_dir: str, force: bool = False) -> dict:
-    """Copy each template into target_dir. Skip files that already exist unless
-    force=True. Returns {"created": [...], "skipped": [...]}"""
+    """Copy each template into target_dir, preserving relative subpaths. Skip
+    files that already exist unless force=True. Returns
+    {"created": [...], "skipped": [...]}"""
     os.makedirs(target_dir, exist_ok=True)
     created, skipped = [], []
     for name in FILES:
@@ -23,6 +40,7 @@ def install(templates_dir: str, target_dir: str, force: bool = False) -> dict:
         if os.path.exists(dst) and not force:
             skipped.append(name)
             continue
+        os.makedirs(os.path.dirname(dst) or ".", exist_ok=True)
         shutil.copyfile(os.path.join(templates_dir, name), dst)
         created.append(name)
     return {"created": created, "skipped": skipped}
