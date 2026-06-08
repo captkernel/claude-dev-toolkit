@@ -18,13 +18,22 @@ Foundational and genuinely effective: a good CLAUDE.md is the single highest-lev
 ```
 claude-code-starter-kit/
   templates/
-    CLAUDE.md       # project context + the 4 working rules + stack lock + hard stops
+    CLAUDE.md       # project context + the 4 working rules + autonomous-work section + stack lock + hard stops
     MEMORY.md       # decision log (read at session start)
     ERRORS.md       # failure log (checked before similar tasks)
     anti-style.md   # banned phrases / tone
-  install.py        # drops the templates into any repo (skips existing files)
+    .claude/
+      settings.json            # curated permission allowlist (safe cmds auto-run; destructive/secret reads denied)
+      commands/loop.md         # /loop  — keep going until verified done or truly blocked
+      commands/goal.md         # /goal  — fix a checkable definition-of-done before starting
+      agents/orchestrator.md   # subagent: decompose → delegate in parallel → integrate → verify
+  install.py        # drops the templates (incl. the .claude/ tree) into any repo (skips existing files)
   test_install.py   # tests for the installer
 ```
+
+The `.claude/` tree wires in the long-running/autonomous-work tips (auto-permissions,
+subagent orchestration, `/loop`+`/goal`, self-verify). See `../long-running-autonomy.md`
+for the de-hyped writeup behind it.
 
 ## Usage
 From a target repo (or anywhere), run:

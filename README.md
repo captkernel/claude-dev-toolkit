@@ -2,7 +2,8 @@
 
 Set up Claude Code well and build with it.
 
-- **starter-kit/** — drop-in `CLAUDE.md` + `MEMORY.md` + `ERRORS.md` + `anti-style.md` with an `install.py` (skips existing files) and tests. The highest-leverage thing for Claude Code quality.
+- **starter-kit/** — drop-in `CLAUDE.md` + `MEMORY.md` + `ERRORS.md` + `anti-style.md`, plus a `.claude/` config tree for autonomous work (permission allowlist, `/loop` + `/goal` commands, an `orchestrator` subagent), with an `install.py` (skips existing files) and tests. The highest-leverage thing for Claude Code quality.
+- **long-running-autonomy.md** — de-hyped writeup of the five tips for running Opus 4.8 autonomously on long jobs (auto-permissions, subagent orchestration, `/loop`+`/goal`, cloud, self-verify), mapped to the files that bake them into every project.
 - **secrets-manager/** — keep API keys out of Claude Code's on-disk JSONL transcripts: a setup guide + a stdlib `secret_env.py` helper (with tests).
 - **frontend-polish/** — a screenshot → self-review → refine loop that composes the official `frontend-design` skill instead of reinventing aesthetics.
 - **a2a-agent-tutorial/** — a minimal, dependency-light Agent2Agent (A2A) demo in Python (pluggable LLM, runs offline, tested).
